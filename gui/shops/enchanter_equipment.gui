@@ -1,0 +1,112 @@
+%include "gui/main_menu/options_base.inc"
+
+<gui>
+	<sprites>
+		%block OptionsSprites
+		%include "gui/scalablebutton_sprites.inc"
+		%include "gui/panel_decoration.inc"
+
+		<sprite name="icon-frame" texture="gui/gui.png"><frame>76 210 28 28</frame></sprite>
+		<sprite name="diff" texture="gui/icons.png"><frame>93 77 11 11</frame></sprite>
+		<sprite name="length" texture="gui/icons.png"><frame>7 77 13 13</frame></sprite>
+		<sprite name="selected" texture="gui/gui.png"><frame>258 178 13 11</frame></sprite>
+		<sprite name="reward-gold" texture="gui/icons.png"><frame>0 128 13 13</frame></sprite>
+		<sprite name="reward-wood" texture="gui/icons.png"><frame>13 128 13 13</frame></sprite>
+		<sprite name="reward-iron" texture="gui/icons.png"><frame>26 128 13 13</frame></sprite>
+		<sprite name="reward-ore" texture="gui/icons.png"><frame>39 128 13 13</frame></sprite>
+		<sprite name="reward-crystal" texture="gui/icons.png"><frame>52 128 13 13</frame></sprite>
+		<sprite name="reward-mithril" texture="gui/icons.png"><frame>65 128 13 13</frame></sprite>
+		<sprite name="reward-villager" texture="gui/icons.png"><frame>59 78 11 12</frame></sprite>
+		<sprite name="reward-equipment" texture="gui/icons.png"><frame>47 78 12 12</frame></sprite>
+		<sprite name="reward-misc" texture="gui/icons.png"><frame>100 25 11 13</frame></sprite>
+	</sprites>
+
+	<doc>
+		<group>
+			<group width="321" height="305" anchor="0.5 0.5" >
+				<panel id="content" width="321" height="305" anchor="0.5 0.5" style="standard" >
+					<panel anchor="0.5 0" width="321" height="35" offset="0 0" style="character_pick_top">
+						<text id="title" anchor="0.5 0.5" offset="0 2" text="N/A" font="header" />
+					</panel>
+
+					<scalebutton id="close" func="close" only-mouse="true" spriteset="cross" width="11" offset="-2 2" anchor="1 0" />
+					%block DefaultShopDecorations
+
+					<group id="equipment" width="100%" height="100%" visible="true">
+						<rect anchor="1 0" width="15" height="234" offset="-10 42" spriteset="gui/sprite_rect.sval:square-roundedleft" />
+						<rect anchor="0 0" width="288" height="234" offset="9 42" spriteset="gui/sprite_rect.sval:square-roundedtopleft" >
+							<text id="empty" anchor="0.5 0.5" offset="0 0" text="" align="center" width="260" font="gui/fonts/hw8.fnt" />
+							<scrollbar id="equipment-list" spriteset="angular-scrollbar" width="280" height="228" anchor="0 0.5" offset="4 0" bar-offset="6 0" escape-up="false" escape-down="false" flow="vbox" />
+						</rect>
+					</group>
+
+					<group id="enchant" width="100%" height="100%" visible="true">
+						<rect anchor="0.5 0" width="302" height="32" offset="0 38" spriteset="gui/sprite_rect.sval:rounded">
+							<rectbutton id="modifier-1" visible="true" func="modifier-1" func-hover="hover" width="98" height="28" anchor="0 0.5" offset="2 0" hover-size-add="2 2" click-size-add="2 2" nav-pos="0 0"
+								spriteset="gui/sprite_rect.sval:loadout-blessing-button" spritesethover="gui/sprite_rect.sval:loadout-blessing-button-hover" spritesetclick="gui/sprite_rect.sval:loadout-blessing-button-hover" >
+								<text id="text" font="text" text="Poisoned" anchor="0.5 0.5" offset="0 0" align="center" />
+								<group id="selected" visible="true" >
+									<sprite anchor="0 0.5" offset="3 0" src="selected" />
+									<sprite anchor="1 0.5" offset="-3 0" src="selected" />
+								</group>
+							</rectbutton>
+							<rectbutton id="modifier-2" visible="true" func="modifier-2" func-hover="hover" width="98" height="28" anchor="0.5 0.5" offset="0 0" hover-size-add="2 2" click-size-add="2 2" nav-pos="1 0"
+								spriteset="gui/sprite_rect.sval:loadout-blessing-button" spritesethover="gui/sprite_rect.sval:loadout-blessing-button-hover" spritesetclick="gui/sprite_rect.sval:loadout-blessing-button-hover" >
+								<text id="text" font="text" text="of Insightfulness" anchor="0.5 0.5" offset="0 0" align="center" />
+								<group id="selected" visible="true" >
+									<sprite anchor="0 0.5" offset="3 0" src="selected" />
+									<sprite anchor="1 0.5" offset="-3 0" src="selected" />
+								</group>
+							</rectbutton>
+							<rectbutton id="modifier-3" visible="true" func="modifier-3" func-hover="hover" width="98" height="28" anchor="1 0.5" offset="-2 0" hover-size-add="2 2" click-size-add="2 2" nav-pos="2 0"
+								spriteset="gui/sprite_rect.sval:loadout-blessing-button" spritesethover="gui/sprite_rect.sval:loadout-blessing-button-hover" spritesetclick="gui/sprite_rect.sval:loadout-blessing-button-hover" >
+								<text id="text" font="text" text="Epic" anchor="0.5 0.5" offset="0 0" align="center" />
+								<group id="selected" visible="true" >
+									<sprite anchor="0 0.5" offset="3 0" src="selected" />
+									<sprite anchor="1 0.5" offset="-3 0" src="selected" />
+								</group>
+							</rectbutton>
+						</rect>
+						
+						<rect anchor="1 0" width="15" height="206" offset="-10 70" spriteset="gui/sprite_rect.sval:square-roundedleft" />
+						<rect anchor="0 0" width="288" height="206" offset="9 70" spriteset="gui/sprite_rect.sval:square-roundedtopleft" >
+							<text id="enchant-empty" anchor="0.5 0.5" offset="0 0" text="" font="gui/fonts/hw8.fnt" />
+							<scrollbar id="enchant-list" spriteset="angular-scrollbar" width="280" height="200" anchor="0 0.5" offset="4 0" bar-offset="6 0" escape-up="false" escape-down="false" flow="hboxwrapped" />
+						</rect>
+					</group>
+
+					<rect anchor="0.5 1" width="302" height="19" offset="0 -10" spriteset="gui/sprite_rect.sval:rounded-squaretopleft" >
+						<text id="currency" anchor="0.5 0.5" offset="0 1" text="N/A" font="gui/fonts/hw8.fnt" />
+					</rect>
+				</panel>
+
+				<tooltip-anchor tooltip-anchor="1 0" offset="-2 0" />
+			</group>
+
+			<enchant-equipment-item id="entry-template" visible="false" icon-frame="icon-frame" title="Chilling Bastard Sword of Deflection" title-width="118" width="282" height="46" offset="-1 0" 
+				spriteset="gui/sprite_rect.sval:entry-shop-building" 
+				spriteset-trim="gui/sprite_rect.sval:entry-shop-building-trim" 
+				spriteset-mid="gui/sprite_rect.sval:entry-shop-building-mid" 
+			>
+				<entry-shop-enchant-equipment-item-option id="button-1" visible="false" nav-pos="0 0" func="" title="enchant" cost="" width="55" height="38" anchor="1 0.5" offset="-1 0" 
+					spriteset="gui/sprite_rect.sval:entry-shop-building" 
+					spriteset-hover="gui/sprite_rect.sval:entry-shop-building-hover"
+				/>
+				<entry-shop-enchant-equipment-item-option id="button-2" visible="false" nav-pos="0 1" func="" title="upgrade to uncommon" cost="500C" width="55" height="38" anchor="1 0.5" offset="-58 0" 
+					spriteset="gui/sprite_rect.sval:entry-shop-building" 
+					spriteset-hover="gui/sprite_rect.sval:entry-shop-building-hover"
+				/>
+			</enchant-equipment-item>
+
+			<rectbutton id="enchant-template" visible="false" func="modify" func-hover="hover" width="140" height="32" anchor="0 0" offset="0 0" hover-size-add="2 2" click-size-add="2 2" 
+				spriteset="gui/sprite_rect.sval:loadout-blessing-button" spritesethover="gui/sprite_rect.sval:loadout-blessing-button-hover" spritesetclick="gui/sprite_rect.sval:loadout-blessing-button-hover" >
+				<text id="text" font="text" text="of Insightfulness" width="90" anchor="0.5 0.5" offset="0 0" align="center" />
+				<text id="cost" font="text" text="" anchor="1 0.5" offset="-2 0" align="center" />
+				<group id="selected" visible="false" >
+					<sprite anchor="0 0.5" offset="3 0" src="selected" />
+					<sprite anchor="1 0.5" offset="-3 0" src="selected" />
+				</group>
+			</rectbutton>
+		</group>
+	</doc>
+</gui>
